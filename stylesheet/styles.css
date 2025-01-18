@@ -1,0 +1,530 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.border-outline {
+  border-radius: 20px;
+  border: 2px solid white;
+}
+.buttonBg {
+  background-color: #000000ab;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+/* reusable classes */
+
+body {
+  background-color: black;
+}
+.bgContainer {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.bgContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.greetingContainer {
+  width: 80%;
+  height: 90%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.Title-text {
+  background-color: rgba(0, 0, 0, 0.664);
+  display: flex;
+  color: rgb(0, 255, 0);
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 20%;
+  margin: auto;
+  border-radius: 30px;
+}
+.Title-text h1 {
+  font-size: 35px;
+}
+.choicesContainer {
+  margin-top: 10px;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: rgb(1, 102, 1);
+}
+.choicesContainer h1:hover {
+  color: #0ced08;
+}
+.choicesContainer h1 {
+  font-size: 40px;
+}
+.play {
+  background-color: rgba(0, 0, 0, 0.664);
+  height: 20%;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.Multiplayer {
+  background-color: rgba(0, 0, 0, 0.664);
+  height: 20%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.Rules {
+  background-color: rgba(0, 0, 0, 0.664);
+  height: 20%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+/* rules-page */
+.rulesContainer {
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 40%;
+  height: 55%;
+  margin: auto;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(12, 255, 12);
+  border-radius: 20px;
+  border: 2px solid white;
+}
+.rulesContainer ul {
+  font-size: 30px;
+  list-style: none;
+}
+.backButton {
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 25%;
+  height: 15%;
+  margin: auto;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(1, 110, 1);
+  border-radius: 20px;
+  border: 2px solid white;
+}
+.backButton:hover {
+  color: rgb(2, 255, 2);
+}
+/* opponents page */
+.OpponentBg {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.OpponentBg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.opponentChoiceTitle {
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 30%;
+  height: 15%;
+  margin: auto;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 255, 0);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+}
+.oppenentsPictures {
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 85%;
+  height: 60%;
+  margin: auto;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.profilepic {
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profilepic img:hover {
+  width: 260px;
+  height: 260px;
+  cursor: pointer;
+}
+/* gameplay page */
+.RoundContainer {
+  width: 65%;
+  height: 40%;
+  margin: auto;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.roundBox {
+  grid-column-start: 1;
+  grid-row: 1 / 1;
+  width: 200px;
+  height: 100px;
+  background-color: #053804;
+  border: 2px solid white;
+}
+.roundBoxTitle {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row: 1 / 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.roundBox1 {
+  grid-column-start: 3;
+  grid-column-end: 3;
+  grid-row: 1 / 1;
+  width: 200px;
+  height: 100px;
+  background-color: #053804;
+  border: 2px solid white;
+}
+.round1div {
+  width: 50%;
+  height: 75px;
+  background-color: #053804;
+  display: flex;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid white;
+  color: white;
+}
+.characterImage {
+  width: 80px;
+  height: 80px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.characterImage img {
+  width: 100%;
+  height: 100%;
+}
+.CPUChoice {
+  background-color: #053804;
+  border: 2px solid white;
+  color: white;
+  width: 40%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.playerChicesCntainer {
+  width: 85%;
+  height: 40%;
+  margin: auto;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  color: white;
+}
+.rows {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.buttonschoice {
+  background-color: #053804;
+  width: 200px;
+  height: 100px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.spockContainer {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.HomeTryAgainMatrix {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  cursor: pointer;
+}
+.Matrixhover:hover {
+  color: #0ced08;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+#homeButton:hover {
+  color: #0ced08;
+}
+#tryagainButton:hover {
+  color: #0ced08;
+}
+.playerChoicesContainer {
+  width: 85%;
+  height: 60%;
+  margin: auto;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  color: white;
+}
+.rows {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.spockContainer {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* best of page */
+.bestofContainer {
+  width: 65%;
+  height: 85%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  color: green;
+}
+.bestofContainer h1:hover {
+  color: rgb(1, 255, 1);
+}
+.bestof1 {
+  width: 750px;
+  height: 150px;
+  background-color: #000000d2;
+  backdrop-filter: blur(10px);
+  border: 2px solid white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bestof5 {
+  width: 750px;
+  height: 150px;
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+  border: 2px solid white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bestof7 {
+  width: 750px;
+  height: 150px;
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+  border: 2px solid white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.back {
+  width: 250px;
+  height: 90px;
+  background-color: #000000;
+  backdrop-filter: blur(10px);
+
+  border: 2px solid white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* multiplayer page */
+.playersdiv {
+  width: 75%;
+  height: 55%;
+  margin: auto;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.container {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.player {
+  width: 50%;
+}
+.roundnumber {
+  width: 50%;
+}
+.container1 {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.roundName {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.playerwinner {
+  width: 60%;
+  height: 20%;
+}
+.playerwinner h1 {
+  font-size: 25px;
+}
+.container2 {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.multiplayerchoiceContainer {
+  width: 80%;
+  height: 55%;
+  margin: auto;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.player1choiceContainer {
+  width: 50%;
+  height: 100%;
+}
+.player2choiceContainer {
+  width: 50%;
+  height: 100%;
+}
+.choicerow1 {
+  height: 30%;
+  justify-content: space-evenly;
+}
+.choicerow2 {
+  height: 30%;
+  justify-content: space-evenly;
+}
+.option {
+  width: 35%;
+}
+.spoc {
+  width: 45%;
+}
+.choicerow3{
+justify-content: space-evenly;
+}
+.multiplayerchoiceContainer h1:hover{
+  color: #0ced08;
+}
+.selectedButton{
+  color: #0ced08;
+}

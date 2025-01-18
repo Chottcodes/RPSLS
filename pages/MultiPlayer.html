@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplayer page</title>
+    <link rel="stylesheet" href="../stylesheet/styles.css" />
+  </head>
+  <body>
+    <div class="bgContainer">
+      <img src="../Assests/Matrix 1v1.png" alt="Neo vs Morpheus Fighting" />
+      <div class="playersdiv flex">
+        <div class="container">
+          <div class="player border-outline flex buttonBg">
+            <h1>Player 1</h1>
+          </div>
+          <div class="roundnumber border-outline flex buttonBg">
+            <h1 id="player1scoretracker"></h1>
+          </div>
+        </div>
+
+        <div class="container1">
+          <div class="roundName border-outline flex buttonBg">
+            <h1 id="multiplayerRoundtracker">Round 1</h1>
+            <h1 id="bestOf"></h1>
+          </div>
+          <div class="playerwinner border-outline flex buttonBg">
+            <h1 id="winnerTracker">Player 1 Wins</h1>
+          </div>
+        </div>
+        <div class="container2">
+          <div class="player border-outline flex buttonBg">
+            <h1>Player 2</h1>
+          </div>
+          <div class="roundnumber border-outline flex buttonBg">
+            <h1 id="player2scoretracker"></h1>
+          </div>
+        </div>
+      </div>
+      <div class="multiplayerchoiceContainer flex">
+        <div class="player1choiceContainer">
+          <div class="choicerow1 flex">
+            <div
+              class="option buttonBg border-outline flex"
+              id="player1Scissors"
+            >
+              <h1>Scissors</h1>
+            </div>
+            <div class="option buttonBg border-outline flex" id="player1Lizard">
+              <h1>Lizard</h1>
+            </div>
+          </div>
+          <div class="choicerow2 flex">
+            <div class="option buttonBg border-outline flex" id="player1Paper">
+              <h1>Paper</h1>
+            </div>
+            <div class="option buttonBg border-outline flex" id="player1Rock">
+              <h1>Rock</h1>
+            </div>
+          </div>
+          <div class="choicerow3  flex">
+            <div class="option buttonBg border-outline flex" id="player1Spock">
+              <h1>Spock</h1>
+            </div>
+            <div class="buttonBg option border-outline flex" id="home"><a href="/index.html"><h1>Home</h1></a></div>
+          </div>
+        </div>
+        <div class="player2choiceContainer">
+          <div class="choicerow1 flex">
+            <div
+              class="option buttonBg border-outline flex"
+              id="player2Scissors"
+            >
+              <h1>Scissors</h1>
+            </div>
+            <div class="option buttonBg border-outline flex" id="player2Lizard">
+              <h1>Lizard</h1>
+            </div>
+          </div>
+          <div class="choicerow2 flex">
+            <div class="option buttonBg border-outline flex" id="player2Paper">
+              <h1>Paper</h1>
+            </div>
+            <div class="option buttonBg border-outline flex" id="player2Rock">
+              <h1>Rock</h1>
+            </div>
+          </div>
+          <div class="choicerow3 flex">
+
+            <div class="buttonBg option border-outline flex" id="replay"><h1>Replay</h1></div>
+            <div class="option buttonBg border-outline flex" id="player2Spock">
+              <h1>Spock</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/Multiplayer.js"></script>
+  </body>
+</html>
