@@ -88,7 +88,7 @@ function checkGameEnd() {
   if (localStorageValue === "Best out of 1") {
     roundsToWin = 1;
     bestofText.innerText = "Best of 1";
-  } else if (localStorageValue === "Best Out of 5") {
+  } else if (localStorageValue === "Best out of 5") {
     roundsToWin = 5;
     bestofText.innerText = "Best of 5";
   } else if (localStorageValue === "Best out of 7") {
@@ -96,6 +96,7 @@ function checkGameEnd() {
     bestofText.innerText = "Best of 7";
   }
 
+  
   if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
     winnerShowcaseText.innerText = "player1 Wins (3-0)";
     resetGame();
