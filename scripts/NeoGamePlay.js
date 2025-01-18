@@ -49,16 +49,18 @@ async function GetCPU() {
 function updateScores() {
   roundTitleBox.innerText = `Round: ${rounds}`;
   roundTrackerbox1.innerText = `You: ${player1points}`;
-  roundTrackerbox2.innerText = `Mrpheus: ${CpuPoints}`;
+  roundTrackerbox2.innerText = `Neo: ${CpuPoints}`;
 }
 
 function compareChoices(playerChoice, cpuChoice) {
   if (winConditions[playerChoice].includes(cpuChoice)) {
     player1points++;
-    roundTitleBox.innerText = `You Win this round!`;
+    roundTitleBox.innerText = `You Win`;
   } else if (winConditions[cpuChoice].includes(playerChoice)) {
     CpuPoints++;
-    roundTitleBox.innerText = `Morpheus Wins this round!`;
+    roundTitleBox.innerText = `Neo Wins`;
+  }else if (playerChoice === cpuChoice) {
+    CPUReturnText.innerText = "Match";
   } else {
     roundTitleBox.innerText = `Draw!`;
   }
@@ -83,7 +85,16 @@ function checkGameEnd() {
     resetGame();
     
   }
+  if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+    
+  }
   if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
     bestofText.innerText = "Player 1 Wins";
     resetGame();
   }

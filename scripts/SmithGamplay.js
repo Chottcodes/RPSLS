@@ -3,30 +3,30 @@ const CPUReturnText = document.getElementById("CPUChoice"),
   roundTrackerbox2 = document.getElementById("roundTracker2"),
   roundTitleBox = document.getElementById("RoundTitleBox"),
   backgroundImage = document.getElementById("backgroundImage"),
-  bestofText=document.getElementById("bestOf"),
+  bestofText = document.getElementById("bestOf"),
   rock = document.getElementById("buttonschoiceRock"),
   lizard = document.getElementById("buttonschoiceLizard"),
   spock = document.getElementById("buttonschoiceSpock"),
   paper = document.getElementById("buttonschoicePaper"),
   scissors = document.getElementById("buttonschoiceScissors"),
-  tryAgainButton = document.getElementById('tryagainButton');
+  tryAgainButton = document.getElementById("tryagainButton");
 
 const choices = ["rock", "paper", "scissors", "lizard", "spock"];
 const allButtons = [rock, lizard, spock, paper, scissors];
 //Gather My locaal Storage so i can make adjustments to the round based off the value of localstorage key
-const localStorageValue = localStorage.getItem('gameModeComputer');
+const localStorageValue = localStorage.getItem("gameModeComputer");
 //Created variables to keep track of the points of the CPU and Player.
 let player1points = 0;
 let CpuPoints = 0;
 let rounds = 0;
 let roundsToWin;
 //create a function that display the round to win on load
-document.addEventListener("DOMContentLoaded",() => {
-    OnloadRoundToWin();
-})
+document.addEventListener("DOMContentLoaded", () => {
+  OnloadRoundToWin();
+});
 
-function OnloadRoundToWin(){
-    bestofText.innerText = localStorageValue;
+function OnloadRoundToWin() {
+  bestofText.innerText = localStorageValue;
 }
 
 //Created my winning Conditions
@@ -35,9 +35,8 @@ const winConditions = {
   paper: ["rock", "spock"],
   scissors: ["paper", "lizard"],
   lizard: ["paper", "spock"],
-  spock: ["rock", "scissors"]
+  spock: ["rock", "scissors"],
 };
-
 
 async function GetCPU() {
   const response = await fetch(
@@ -47,19 +46,21 @@ async function GetCPU() {
   return data;
 }
 
-
 function updateScores() {
   roundTitleBox.innerText = `Round: ${rounds}`;
   roundTrackerbox1.innerText = `You: ${player1points}`;
   roundTrackerbox2.innerText = `Smith: ${CpuPoints}`;
 }
 
-
 function compareChoices(playerChoice, cpuChoice) {
   if (winConditions[playerChoice].includes(cpuChoice)) {
     player1points++;
   } else if (winConditions[cpuChoice].includes(playerChoice)) {
     CpuPoints++;
+  } else if (playerChoice === cpuChoice) {
+    CPUReturnText.innerText = "Match";
+  }else if (playerChoice === cpuChoice) {
+    CPUReturnText.innerText = "Match";
   } else {
     roundTitleBox.innerText = `Draw!`;
   }
@@ -69,7 +70,6 @@ function compareChoices(playerChoice, cpuChoice) {
 }
 
 function checkGameEnd() {
-    
   if (localStorageValue === "Best out of 1") {
     roundsToWin = 1;
     bestofText.innerText = "Best of 1";
@@ -83,9 +83,16 @@ function checkGameEnd() {
   if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
     bestofText.innerText = "Player 1 Wins";
     resetGame();
-    
+  }
+  if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
   }
   if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
     bestofText.innerText = "Player 1 Wins";
     resetGame();
   }
@@ -95,22 +102,22 @@ function checkGameEnd() {
       resetGame();
     } else if (player1points < CpuPoints) {
       roundTitleBox.innerText = "CPU wins the game!";
-      resetGame()
+      resetGame();
     } else {
       roundTitleBox.innerText = "It's a draw!";
       resetGame();
     }
   }
-  }
-  function resetGame() {
-    CPUReturnText.innerText = "";
-    player1points = 0;
-    CpuPoints = 0;
-    rounds = 0;
-    updateScores(); 
-  }
+}
+function resetGame() {
+  CPUReturnText.innerText = "";
+  player1points = 0;
+  CpuPoints = 0;
+  rounds = 0;
+  updateScores();
+}
 
-allButtons.forEach(button => {
+allButtons.forEach((button) => {
   button.addEventListener("click", async () => {
     const playerChoice = button.id.replace("buttonschoice", "").toLowerCase();
     const cpuChoice = await GetCPU();
@@ -119,6 +126,6 @@ allButtons.forEach(button => {
     updateScores();
   });
 });
-tryAgainButton.addEventListener('click',() =>{
+tryAgainButton.addEventListener("click", () => {
   resetGame();
-  })
+});

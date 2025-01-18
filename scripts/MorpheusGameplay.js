@@ -81,7 +81,16 @@ function checkGameEnd() {
     resetGame();
     
   }
+  if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+    
+  }
   if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
     bestofText.innerText = "Player 1 Wins";
     resetGame();
   }
@@ -92,7 +101,9 @@ function checkGameEnd() {
     } else if (player1points < CpuPoints) {
       roundTitleBox.innerText = "Morpheus wins!";
       resetGame();
-    } else {
+    } else if (playerChoice === cpuChoice) {
+      CPUReturnText.innerText = "Match";
+    }else {
       roundTitleBox.innerText = "It's a draw!";
       resetGame();
     }
