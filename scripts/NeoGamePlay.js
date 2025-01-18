@@ -78,6 +78,15 @@ function checkGameEnd() {
     roundsToWin = 7;
     bestofText.innerText = "Best of 7";
   }
+  if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+    
+  }
+  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+  }
   if (rounds === roundsToWin) {
     if (player1points > CpuPoints) {
       if (player1points > CpuPoints) {

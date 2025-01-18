@@ -9,7 +9,7 @@ const CPUReturnText = document.getElementById("CPUChoice"),
   spock = document.getElementById("buttonschoiceSpock"),
   paper = document.getElementById("buttonschoicePaper"),
   scissors = document.getElementById("buttonschoiceScissors"),
-  tryAgainButton = document.getElementById('tryagainButton');
+  tryAgainButton = document.getElementById("tryagainButton");
 
 const choices = ["rock", "paper", "scissors", "lizard", "spock"];
 const allButtons = [rock, lizard, spock, paper, scissors];
@@ -76,13 +76,22 @@ function checkGameEnd() {
     roundsToWin = 7;
     bestofText.innerText = "Best of 7";
   }
+  if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+    
+  }
+  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    bestofText.innerText = "Player 1 Wins";
+    resetGame();
+  }
   if (rounds === roundsToWin) {
     if (player1points > CpuPoints) {
       roundTitleBox.innerText = "Player 1 wins";
       resetGame();
     } else if (player1points < CpuPoints) {
       roundTitleBox.innerText = "Morpheus wins!";
-      resetGame()
+      resetGame();
     } else {
       roundTitleBox.innerText = "It's a draw!";
       resetGame();
@@ -107,7 +116,6 @@ allButtons.forEach((button) => {
   });
 });
 
-tryAgainButton.addEventListener('click',() =>{
-
-resetGame();
-})
+tryAgainButton.addEventListener("click", () => {
+  resetGame();
+});

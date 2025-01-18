@@ -95,6 +95,7 @@ function checkGameEnd() {
     roundsToWin = 7;
     bestofText.innerText = "Best of 7";
   }
+
   if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
     bestofText.innerText = "player1 Wins (3-0)";
     resetGame();
@@ -114,9 +115,11 @@ function checkGameEnd() {
   if (roundCount === roundsToWin) {
     if (player1points > player2points) {
       multiplayerRoundTracker.innerText = "Player 1 Wins";
+      resetGame();
     } else if (player1points < player2points) {
       multiplayerRoundTracker.innerText = "Player 2 Wins";
-    } else if (roundCount === roundsToWin * 2) {
+      resetGame();
+    } else if (roundCount === roundsToWin) {
       multiplayerRoundTracker.innerText = "Draw!";
       resetGame();
     }
