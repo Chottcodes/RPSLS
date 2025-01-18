@@ -34,11 +34,11 @@ const winnerShowcaseText = document.getElementById("winnerTracker");
 
 const localStorageValue = localStorage.getItem("gameMode");
 
-document.addEventListener("DOMContentLoaded",() => {
+document.addEventListener("DOMContentLoaded", () => {
   OnloadRoundToWin();
-})
+});
 
-function OnloadRoundToWin(){
+function OnloadRoundToWin() {
   bestofText.innerText = localStorageValue;
 }
 
@@ -95,13 +95,28 @@ function checkGameEnd() {
     roundsToWin = 7;
     bestofText.innerText = "Best of 7";
   }
-
+  if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
+    bestofText.innerText = "player1 Wins (3-0)";
+    resetGame();
+  }
+  if (roundsToWin === 5 && player2points === 0 && player1points === 3) {
+    bestofText.innerText = "Player 2 Wins (3-0)";
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 4 && player2points === 0) {
+    bestofText.innerText = "Player 1 Wins (4-0)";
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 0 && player2points === 4) {
+    bestofText.innerText = "Player 2 Wins (3-0)";
+    resetGame();
+  }
   if (roundCount === roundsToWin) {
     if (player1points > player2points) {
       multiplayerRoundTracker.innerText = "Player 1 Wins";
     } else if (player1points < player2points) {
       multiplayerRoundTracker.innerText = "Player 2 Wins";
-    } else if(roundCount === (roundsToWin *2)){
+    } else if (roundCount === roundsToWin * 2) {
       multiplayerRoundTracker.innerText = "Draw!";
       resetGame();
     }
@@ -132,46 +147,35 @@ function RoundText() {
   multiplayerRoundTracker.innerText = `Round: ${roundCount + 1}`;
 }
 function resetRound() {
- 
   player1Choice = null;
   player2Choice = null;
 
- 
   allButtons.forEach((button) => button.classList.remove("selectedButton"));
-
 
   multiplayerRoundTracker.innerText = `Round: ${roundCount + 1}`;
 }
 
-
 allButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    
     allButtons.forEach((btn) => btn.classList.remove("selectedButton"));
 
-    
     button.classList.add("selectedButton");
 
-    
     if (button.id.includes("player1")) {
       player1Choice = button.id.replace("player1", "").toLowerCase();
     } else if (button.id.includes("player2")) {
       player2Choice = button.id.replace("player2", "").toLowerCase();
     }
 
-    
     if (player1Choice && player2Choice) {
-      
       compareChoices(player1Choice, player2Choice);
       updateScores();
 
-      
       resetRound();
     }
   });
 });
-replayButton.addEventListener('click',() => {
+replayButton.addEventListener("click", () => {
   resetGame();
   resetRound();
-})
-
+});
