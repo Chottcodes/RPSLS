@@ -97,19 +97,19 @@ function checkGameEnd() {
   }
 
   if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
-    bestofText.innerText = "player1 Wins (3-0)";
+    winnerShowcaseText.innerText = "player1 Wins (3-0)";
     resetGame();
   }
   if (roundsToWin === 5 && player2points === 0 && player1points === 3) {
-    bestofText.innerText = "Player 2 Wins (3-0)";
+    winnerShowcaseText.innerText = "Player 2 Wins (3-0)";
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 4 && player2points === 0) {
-    bestofText.innerText = "Player 1 Wins (4-0)";
+    winnerShowcaseText.innerText = "Player 1 Wins (4-0)";
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 0 && player2points === 4) {
-    bestofText.innerText = "Player 2 Wins (3-0)";
+    winnerShowcaseText.innerText = "Player 2 Wins (3-0)";
     resetGame();
   }
   if (roundCount === roundsToWin) {
@@ -152,18 +152,11 @@ function RoundText() {
 function resetRound() {
   player1Choice = null;
   player2Choice = null;
-
-  allButtons.forEach((button) => button.classList.remove("selectedButton"));
-
   multiplayerRoundTracker.innerText = `Round: ${roundCount + 1}`;
 }
 
 allButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    allButtons.forEach((btn) => btn.classList.remove("selectedButton"));
-
-    button.classList.add("selectedButton");
-
     if (button.id.includes("player1")) {
       player1Choice = button.id.replace("player1", "").toLowerCase();
     } else if (button.id.includes("player2")) {
