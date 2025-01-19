@@ -80,19 +80,19 @@ function checkGameEnd() {
     bestofText.innerText = "Best of 7";
   }
   if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
-    CPUReturnText.innerText = `p1 won (3-0)`;
+    CPUReturnText.innerText = `Player 1 won (3-0)`;
     resetGame();
   }
   if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
-    CPUReturnText.innerText = ` won (3-0)`;
+    CPUReturnText.innerText = `Smith won (3-0)`;
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
-    CPUReturnText.innerText = `p1 won (4-0)`;
+    CPUReturnText.innerText = `player 1 won (4-0)`;
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
-    CPUReturnText.innerText = ` won (4-0)`;
+    CPUReturnText.innerText = `Smith won (4-0)`;
     resetGame();
   }
   if (rounds === roundsToWin) {

@@ -72,10 +72,10 @@ function updateScores() {
 function compareChoices(player1Choice, player2Choice) {
   if (winningConditions[player1Choice].includes(player2Choice)) {
     player1points++;
-    winnerShowcaseText.innerText = `Player 1 Round`;
+    winnerShowcaseText.innerText = `Player 1 wins Round`;
   } else if (winningConditions[player2Choice].includes(player1Choice)) {
     player2points++;
-    winnerShowcaseText.innerText = `Player 2 Round`;
+    winnerShowcaseText.innerText = `Player 2 wins Round`;
   } else {
     winnerShowcaseText.innerText = `Draw!`;
   }
@@ -98,7 +98,7 @@ function checkGameEnd() {
 
   
   if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
-    winnerShowcaseText.innerText = "player1 Wins (3-0)";
+    winnerShowcaseText.innerText = "player 1 Wins (3-0)";
     disableButtons();
     resetGame();
   }
