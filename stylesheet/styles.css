@@ -489,7 +489,7 @@ a {
 }
 .multiplayerchoiceContainer {
   width: 80%;
-  height: 55%;
+  height: 60%;
   margin: auto;
   position: absolute;
   top: 70%;
@@ -515,12 +515,18 @@ a {
 }
 .option {
   width: 35%;
+  height: 80%;
 }
 .spoc {
   width: 45%;
 }
 .choicerow3{
 justify-content: space-evenly;
+width: 100%;
+height: 30%;
+}
+.multiplayerchoiceContainer button:hover{
+  color: #0ced08;
 }
 .multiplayerchoiceContainer h1:hover{
   color: #0ced08;
@@ -531,4 +537,9 @@ justify-content: space-evenly;
 button{
   font-size: 40px;
   color: white;
+}
+.buttonAdjust{
+  background-color:#000000;
+  height:100%;
+  width: 100%;
 }

@@ -72,10 +72,10 @@ function updateScores() {
 function compareChoices(player1Choice, player2Choice) {
   if (winningConditions[player1Choice].includes(player2Choice)) {
     player1points++;
-    winnerShowcaseText.innerText = `Player 1 Wins`;
+    winnerShowcaseText.innerText = `Player 1 Round`;
   } else if (winningConditions[player2Choice].includes(player1Choice)) {
     player2points++;
-    winnerShowcaseText.innerText = `Player 2 Wins`;
+    winnerShowcaseText.innerText = `Player 2 Round`;
   } else {
     winnerShowcaseText.innerText = `Draw!`;
   }
@@ -99,34 +99,49 @@ function checkGameEnd() {
   
   if (roundsToWin === 5 && player1points === 3 && player2points === 0) {
     winnerShowcaseText.innerText = "player1 Wins (3-0)";
+    disableButtons();
     resetGame();
   }
   if (roundsToWin === 5 && player2points === 0 && player1points === 3) {
     winnerShowcaseText.innerText = "Player 2 Wins (3-0)";
+    disableButtons();
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 4 && player2points === 0) {
     winnerShowcaseText.innerText = "Player 1 Wins (4-0)";
+    disableButtons();
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 0 && player2points === 4) {
-    winnerShowcaseText.innerText = "Player 2 Wins (3-0)";
+    winnerShowcaseText.innerText = "Player 2 Wins (4-0)";
+    disableButtons();
     resetGame();
   }
   if (roundCount === roundsToWin) {
     if (player1points > player2points) {
-      multiplayerRoundTracker.innerText = "Player 1 Wins";
-      resetGame();
+      winnerShowcaseText.innerText = "Player 1 Wins Game";
+      disableButtons();
+      resetRound();
     } else if (player1points < player2points) {
-      multiplayerRoundTracker.innerText = "Player 2 Wins";
-      resetGame();
+      winnerShowcaseText.innerText = "Player 2 Wins Game";
+      disableButtons();
+      resetRound()
     } else if (roundCount === roundsToWin) {
-      multiplayerRoundTracker.innerText = "Draw!";
+      winnerShowcaseText.innerText = "Draw!";
       resetGame();
     }
   }
 }
-
+function disableButtons() {
+  allButtons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+function enableButtons() {
+  allButtons.forEach((button) => {
+    button.disabled = false;
+  });
+}
 function resetGame() {
   multiplayerRoundTracker.innerText = "";
   player1points = 0;
@@ -153,7 +168,7 @@ function RoundText() {
 function resetRound() {
   player1Choice = null;
   player2Choice = null;
-  multiplayerRoundTracker.innerText = `Round: ${roundCount + 1}`;
+  multiplayerRoundTracker.innerText = `Round: ${roundCount}`;
 }
 
 allButtons.forEach((button) => {
@@ -173,6 +188,7 @@ allButtons.forEach((button) => {
   });
 });
 replayButton.addEventListener("click", () => {
+  enableButtons();
+  winnerShowcaseText.innerText = "";
   resetGame();
-  resetRound();
 });
