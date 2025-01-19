@@ -49,16 +49,20 @@ async function GetCPU() {
 function updateScores() {
   roundTitleBox.innerText = `Round: ${rounds}`;
   roundTrackerbox1.innerText = `You: ${player1points}`;
-  roundTrackerbox2.innerText = `Mrpheus: ${CpuPoints}`;
+  roundTrackerbox2.innerText = `Morpheus: ${CpuPoints}`;
+  if (roundsToWin === 1) {
+    roundTitleBox.innerText = "";
+    roundTrackerbox1.innerText = "";
+    roundTrackerbox2.innerText = "";
+  }
 }
-
 function compareChoices(playerChoice, cpuChoice) {
   if (winConditions[playerChoice].includes(cpuChoice)) {
     player1points++;
   } else if (winConditions[cpuChoice].includes(playerChoice)) {
     CpuPoints++;
   } else {
-    roundTitleBox.innerText = `Draw!`;
+    CPUReturnText.innerText = `Draw!`;
   }
   rounds++;
   updateScores();
@@ -77,52 +81,48 @@ function checkGameEnd() {
     bestofText.innerText = "Best of 7";
   }
   if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = `p1 won (3-0)`;
     resetGame();
-    
   }
   if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
-    bestofText.innerText = "Player 1 Wins";
-    resetGame();
-    
-  }
-  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = ` won (3-0)`;
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = `p1 won (3-0)`;
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    CPUReturnText.innerText = ` won (3-0)`;
     resetGame();
   }
   if (rounds === roundsToWin) {
     if (player1points > CpuPoints) {
-      roundTitleBox.innerText = "Player 1 wins";
+      CPUReturnText.innerText = "Player 1 Wins";
       resetGame();
     } else if (player1points < CpuPoints) {
-      roundTitleBox.innerText = "Morpheus wins!";
+      CPUReturnText.innerText = "Morpheus Wins";
       resetGame();
-    } else if (playerChoice === cpuChoice) {
-      CPUReturnText.innerText = "Match";
-    }else {
-      roundTitleBox.innerText = "It's a draw!";
+    } else {
+      CPUReturnText.innerText = "Game Draw!";
       resetGame();
     }
   }
 }
+
 function resetGame() {
-  CPUReturnText.innerText = "";
   player1points = 0;
   CpuPoints = 0;
   rounds = 0;
   updateScores();
 }
-
 allButtons.forEach((button) => {
   button.addEventListener("click", async () => {
     const playerChoice = button.id.replace("buttonschoice", "").toLowerCase();
     const cpuChoice = await GetCPU();
-    CPUReturnText.innerText = `Morpheus: ${cpuChoice}`;
+    CPUReturnText.innerText = `${cpuChoice}`;
     compareChoices(playerChoice, cpuChoice);
+
     updateScores();
   });
 });
