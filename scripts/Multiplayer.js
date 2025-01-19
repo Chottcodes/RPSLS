@@ -22,7 +22,7 @@ let roundCount = 0;
 let roundsToWin = 0;
 let player1Chose = player1Choice == null ? false : true;
 let player2Chose = player2Choice == null ? false : true;
-
+let isPlayer1Turn = true; 
 //My Score boxes
 const player1ScoreBox = document.getElementById("player1scoretracker");
 const player2ScoreBox = document.getElementById("player2scoretracker");
@@ -165,6 +165,34 @@ function RoundText() {
 
   multiplayerRoundTracker.innerText = `Round: ${roundCount + 1}`;
 }
+function disablePlayer1Buttons() {
+  p1scissors.disabled = true;
+  p1lizard.disabled = true;
+  p1paper.disabled = true;
+  p1rock.disabled = true;
+  p1spock.disabled = true;
+}
+function enablePlayer1Buttons() {
+  p1scissors.disabled = false;
+  p1lizard.disabled = false;
+  p1paper.disabled = false;
+  p1rock.disabled = false;
+  p1spock.disabled = false;
+}
+function disablePlayer2Buttons() {
+  p2scissors.disabled = true;
+  p2lizard.disabled = true;
+  p2paper.disabled = true;
+  p2rock.disabled = true;
+  p2spock.disabled = true;
+}
+function enablePlayer2Buttons() {
+  p2scissors.disabled = false;
+  p2lizard.disabled = false;
+  p2paper.disabled = false;
+  p2rock.disabled = false;
+  p2spock.disabled = false;
+}
 function resetRound() {
   player1Choice = null;
   player2Choice = null;
@@ -173,12 +201,20 @@ function resetRound() {
 
 allButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (button.id.includes("player1")) {
+   
+    if (button.id.includes("player1") && isPlayer1Turn) {
       player1Choice = button.id.replace("player1", "").toLowerCase();
-    } else if (button.id.includes("player2")) {
+      disablePlayer1Buttons(); 
+      enablePlayer2Buttons();  
+      isPlayer1Turn = false; 
+    } 
+    else if (button.id.includes("player2") && !isPlayer1Turn) {
       player2Choice = button.id.replace("player2", "").toLowerCase();
-    }
+      disablePlayer2Buttons(); 
+      enablePlayer1Buttons(); 
+      isPlayer1Turn = true;
 
+    }
     if (player1Choice && player2Choice) {
       compareChoices(player1Choice, player2Choice);
       updateScores();
