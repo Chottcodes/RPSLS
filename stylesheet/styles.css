@@ -528,3 +528,7 @@ justify-content: space-evenly;
 .selectedButton{
   color: #0ced08;
 }
+button{
+  font-size: 40px;
+  color: white;
+}

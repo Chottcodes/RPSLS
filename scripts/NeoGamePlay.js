@@ -9,7 +9,7 @@ const CPUReturnText = document.getElementById("CPUChoice"),
   spock = document.getElementById("buttonschoiceSpock"),
   paper = document.getElementById("buttonschoicePaper"),
   scissors = document.getElementById("buttonschoiceScissors"),
-  tryAgainButton = document.getElementById('tryagainButton');
+  tryAgainButton = document.getElementById("tryagainButton");
 
 const choices = ["rock", "paper", "scissors", "lizard", "spock"];
 const allButtons = [rock, lizard, spock, paper, scissors];
@@ -47,22 +47,21 @@ async function GetCPU() {
 }
 
 function updateScores() {
-  roundTitleBox.innerText = `Round: ${rounds}`;
+  if (roundsToWin === 1) {
+    roundTitleBox.innerText 
+  } else {
+    roundTitleBox.innerText = `Round: ${rounds}`;
+  }
   roundTrackerbox1.innerText = `You: ${player1points}`;
   roundTrackerbox2.innerText = `Neo: ${CpuPoints}`;
 }
-
 function compareChoices(playerChoice, cpuChoice) {
   if (winConditions[playerChoice].includes(cpuChoice)) {
     player1points++;
-    roundTitleBox.innerText = `You Win`;
   } else if (winConditions[cpuChoice].includes(playerChoice)) {
     CpuPoints++;
-    roundTitleBox.innerText = `Neo Wins`;
-  }else if (playerChoice === cpuChoice) {
-    CPUReturnText.innerText = "Match";
   } else {
-    roundTitleBox.innerText = `Draw!`;
+    CPUReturnText.innerText = `Draw!`;
   }
   rounds++;
   updateScores();
@@ -81,55 +80,66 @@ function checkGameEnd() {
     bestofText.innerText = "Best of 7";
   }
   if (roundsToWin === 5 && player1points === 3 && CpuPoints === 0) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = `p1 won (3-0)`;
     resetGame();
-    
   }
   if (roundsToWin === 5 && player1points === 0 && CpuPoints === 3) {
-    bestofText.innerText = "Player 1 Wins";
-    resetGame();
-    
-  }
-  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = ` won (3-0)`;
     resetGame();
   }
   if (roundsToWin === 7 && player1points === 4 && CpuPoints === 0) {
-    bestofText.innerText = "Player 1 Wins";
+    CPUReturnText.innerText = `p1 won (4-0)`;
+    resetGame();
+  }
+  if (roundsToWin === 7 && player1points === 0 && CpuPoints === 4) {
+    CPUReturnText.innerText = ` won (4-0)`;
     resetGame();
   }
   if (rounds === roundsToWin) {
     if (player1points > CpuPoints) {
-      if (player1points > CpuPoints) {
-        roundTitleBox.innerText = "Player 1 wins the game!";
-        resetGame();
-      } else if (player1points < CpuPoints) {
-        roundTitleBox.innerText = "CPU wins the game!";
-        resetGame();
-      } else {
-        roundTitleBox.innerText = "It's a draw!";
-        resetGame();
-      }
+      CPUReturnText.innerText = "Player 1 Wins";
+      disableButtons();
+      updateScores();
+    } else if (player1points < CpuPoints) {
+      CPUReturnText.innerText = "Neo Wins";
+      disableButtons();
+      updateScores();
+    } else {
+      CPUReturnText.innerText = "Game Draw!";
+      disableButtons();
+     updateScores();
     }
   }
 }
+function disableButtons() {
+  allButtons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+function enableButtons() {
+  allButtons.forEach((button) => {
+    button.disabled = false;
+  });
+}
 function resetGame() {
-  CPUReturnText.innerText = "";
   player1points = 0;
   CpuPoints = 0;
   rounds = 0;
   updateScores();
 }
-
 allButtons.forEach((button) => {
   button.addEventListener("click", async () => {
     const playerChoice = button.id.replace("buttonschoice", "").toLowerCase();
     const cpuChoice = await GetCPU();
-    CPUReturnText.innerText = `Neo: ${cpuChoice}`;
+    CPUReturnText.innerText = `${cpuChoice}`;
     compareChoices(playerChoice, cpuChoice);
+    console.log(roundsToWin);
     updateScores();
   });
 });
-tryAgainButton.addEventListener('click',() =>{
+
+tryAgainButton.addEventListener("click", () => {
+  CPUReturnText.innerText = "";
+  enableButtons();
   resetGame();
-  })
+});
